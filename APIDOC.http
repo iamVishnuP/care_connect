@@ -1,0 +1,137 @@
+#----------------------------------ACCOUNT-----------------------------------#
+
+# api call to create admin
+###
+POST  http://127.0.0.1:8000/owner/register/
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "email":"admin@gmail.com",
+    "password":"admin@123"
+}
+
+
+# api call to create patient
+###
+POST  http://127.0.0.1:8000/patient/register/
+Content-Type: application/json
+
+{
+    "username":"patient",
+    "email":"patient@gmail.com",
+    "password":"patient@123"
+}
+
+
+#---------------------------------DOCTOR--------------------------------------#
+
+# api call to list
+###
+GET  http://127.0.0.1:8000/doctor/
+Accept: application/json
+Authorization: Basic admin:admin@123
+
+# api call to create
+###
+POST   http://127.0.0.1:8000/doctor/
+Content-Type : application/json
+Authorization: Basic admin:admin@123
+
+{
+    "name":"Dr. Supran",
+    "phone":99937012330,
+    "age":21,
+    "specialization":"Gastrology",
+    "consultation_fee":500,
+    "experience":1,
+    "available_from":"10:00",
+    "available_to":"17:00",
+    "appointment_duration":10
+}
+
+# api call to list
+###
+GET  http://127.0.0.1:8000/doctor/4/
+Accept: application/json
+Authorization: Basic admin:admin@123
+
+# api call to update
+###
+
+PUT   http://127.0.0.1:8000/doctor/4/
+Content-Type : application/json
+Authorization: Basic admin:admin@123
+
+{
+  "id": "4",
+  "name": "Dr. Supran",
+  "phone": 99937012330,
+  "age": "21",
+  "specialization": "Gastrology",
+  "fees": "600.00",
+  "experience": 1
+}
+
+
+# api call to delete
+###
+DELETE   http://127.0.0.1:8000/doctor/1/
+Authorization: Basic admin:admin@123
+
+
+
+#----------------------------------APPOINTMENT------------------------------------#
+
+# api call to create appointment
+###
+POST http://127.0.0.1:8000/appointment/
+Content-Type: application/json
+Authorization: Basic patient:patient@123
+
+{
+    "name": "sooraj k j s",
+    "phone": 8909343445,
+    "email": "soorajkjs@gmail.com",
+    "doctor": 7,
+    "appointment_date": "2026-11-16",
+    "appointment_time":"11:00"
+}
+
+# api call to retreieve
+###
+GET http://127.0.0.1:8000/appointment/16/
+Accept: application/json
+
+
+# api call to update appointment
+###
+PUT http://127.0.0.1:8000/appointment/1/
+Content-Type: application/json
+
+{
+    "name": "Vishnu P",
+    "phone": 909343445,
+    "email": "vishnu@gmaill.com",
+    "doctor": 1,
+    "appointment_date": "2026-11-10",
+    "appointment_time": "01:00"
+}
+
+# api call to delete
+###
+DELETE http://127.0.0.1:8000/appointment/20/
+Authorization: Basic patient:patient@123
+
+
+#################### Appointment Summary #######################
+# api call to test appointment summary
+###
+POST http://127.0.0.1:8000/appointment/summary/
+Content-Type: application/json
+
+{
+    "doctor":6,
+    "appointment_date":"2026-11-11"
+}
+
