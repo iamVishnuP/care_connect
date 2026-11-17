@@ -26,7 +26,9 @@ class AppointmentView(APIView):
             doctor_id= cleaned_data.get("doctor")
             form_object= Doctor.objects.get(id=doctor_id)
             appointment_date = cleaned_data.get("appointment_date")
-            appointment_duration=cleaned_data.get("appointment_duration")
+            #appointment_duration=cleaned_data.get("appointment_duration")
+            duration = form_object.appointment_duration
+            fee = form_object.consultation_fee
 
             # Token generation
             last_appointment = Appointment.objects.filter(
@@ -41,19 +43,17 @@ class AppointmentView(APIView):
 
             # Appointment time calculation
             if last_appointment:
-                appointment_time = last_appointment.appointment_time
+              appointment_time = last_appointment.appointment_time
 
-                appointment_date_time = (
+              appointment_date_time = (
                     datetime.combine(appointment_date, appointment_time)
-                    + timedelta(minutes=appointment_duration)
+                    + timedelta(minutes=duration)
                 )
 
-                appointment_time = appointment_date_time.time()
+              appointment_time = appointment_date_time.time()
 
             else:
                 appointment_time = form_object.available_from
-
-            fee= form_object.consultation_fee
 
 
             # appointment_object=Appointment.objects.filter(

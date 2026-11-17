@@ -90,11 +90,11 @@ Content-Type: application/json
 Authorization: Basic patient:patient@123
 
 {
-    "name": "sooraj k j s",
+    "name": "kuttapan",
     "phone": 8909343445,
-    "email": "soorajkjs@gmail.com",
+    "email": "kuttapan@gmail.com",
     "doctor": 7,
-    "appointment_date": "2026-11-16",
+    "appointment_date": "2026-11-19",
     "appointment_time":"11:00"
 }
 
